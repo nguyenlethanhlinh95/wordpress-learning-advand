@@ -17,5 +17,11 @@ function change_text($dulieu)
 }
 add_filter( 'the_title', 'change_text');
 
-//remove_action('woocommerce_single_product_summary','woocommerce_template_single_sharing',50);
+//remove_action('woocommerce_after_single_product_summary','woocommerce_output_related_products',20);
+
+// tim nhung doan hook chưa comment để list ra danh sách functions
+//global $wp_filter;
+//echo '<pre>';
+//print_r($wp_filter['woocommerce_after_single_product'],true);
+//echo '</pre>';
 
