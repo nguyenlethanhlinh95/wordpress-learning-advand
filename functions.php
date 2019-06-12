@@ -20,6 +20,8 @@ add_filter( 'the_title', 'change_text');
 //remove_action('woocommerce_after_single_product_summary','woocommerce_output_related_products',20);
 
 // tim nhung doan hook chưa comment để list ra danh sách functions
+// global $wp_filter;
+// echo '<pre>'; print_r($wp_filter['woocommerce_single_product_summary']) ;echo '</pre>';
 
 
 // Sua truong billing country la khong bat buoc
@@ -62,23 +64,40 @@ function themdienthoaiadmin($order)
 }
 
 // them select box, tinh thanh trong billing
-add_filter('woocommerce_checkout_fields', 'themtinh',10,1);
-function themtinh($dulieu)
-{
-    unset($dulieu['billing']['billing_city']);
-    $dulieu['billing']['billing_tinh'] = array(
-        'type' => 'select',
-        'label' => __('Tinh ho tro giao hang', 'woocommerce'),
-        'required' => false,
-        'class' => array('htgh'),
-        'options' => array(
-            'CHON' => __('Chọn tỉnh thành', 'woocommerce'),
-            'HANOI' => __('Hà Nội', 'woocommerce'),
-            'HCM' => __('Thành phố HCM', 'woocommerce'),
-            'DANANG' => __('Thành phố Đà Nẵng', 'woocommerce'),
-        )
+// add_filter('woocommerce_checkout_fields', 'themtinh',10,1);
+// function themtinh($dulieu)
+// {
+//     unset($dulieu['billing']['billing_city']);
+//     $dulieu['billing']['billing_tinh'] = array(
+//         'type' => 'select',
+//         'label' => __('Tinh ho tro giao hang', 'woocommerce'),
+//         'required' => false,
+//         'class' => array('htgh'),
+//         'options' => array(
+//             'CHON' => __('Chọn tỉnh thành', 'woocommerce'),
+//             'HANOI' => __('Hà Nội', 'woocommerce'),
+//             'HCM' => __('Thành phố HCM', 'woocommerce'),
+//             'DANANG' => __('Thành phố Đà Nẵng', 'woocommerce'),
+//         )
 
-    );
-    return $dulieu;
+//     );
+//     return $dulieu;
+// }
+
+
+
+
+add_filter( 'the_title', 'thachpham_content_filter' );
+function thachpham_content_filter( $title ) {
+    return 'ABC ' . $title ;
 }
 
+
+// function my_custom_translations( $strings ) {
+// $text = array(
+// 'WEEKLY FEATURED PRODUCTS' => 'Xem nhanh'
+// );
+// $strings = str_ireplace( array_keys( $text ), $text, $strings );
+// return $strings;
+// }
+// add_filter( 'the_title', 'my_custom_translations', 20 );
